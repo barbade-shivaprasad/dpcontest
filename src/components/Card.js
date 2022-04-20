@@ -6,7 +6,7 @@ import { Link, useParams,useNavigate } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 
-const Card = ({ele,pLiked}) => {
+const Card = ({ele,pLiked,setprogress}) => {
 
   const navigate = useNavigate();
   const [cardContainer, setcardContainer] = useState("")
@@ -78,16 +78,7 @@ const Card = ({ele,pLiked}) => {
     setfillColor("fa-heart-o")
   }
   
-  const fillUnfill=()=>{
-    if(like == 1){
-      
-      fill()
-    }
-    else
-    {
-      unfill()
-    }
-  }
+  
   useEffect(() => {
 
     if(ele === undefined){
@@ -118,7 +109,8 @@ const Card = ({ele,pLiked}) => {
   const likeUnlike=async()=>{
     
     try {
-      console.log(post)  
+      
+      setprogress(80)
       if(like == 0){
         let res = await axios.post('https://dp1.sytes.net/like',{id:post.id})
         
@@ -127,6 +119,7 @@ const Card = ({ele,pLiked}) => {
         else{
           fill()
           setLike(1)
+          setprogress(100)
         }
       }
       else{
@@ -136,6 +129,7 @@ const Card = ({ele,pLiked}) => {
         else{
           unfill()
           setLike(0)
+          setprogress(100)
         }
       }
       socket.emit('updatelikes',post.id)
@@ -143,6 +137,7 @@ const Card = ({ele,pLiked}) => {
       } catch (err) {
           console.log(err.message)
           alert('danger',err.message)
+          setprogress(100)
       }
   }
   
