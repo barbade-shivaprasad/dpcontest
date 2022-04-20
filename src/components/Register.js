@@ -30,7 +30,7 @@ const Register = ({setprogress}) => {
 			try {
 
 				setprogress(80)
-				let res = await axios.post('https://dp.realshiva.rocks/sendmail',{email:email,shouldExist:false})
+				let res = await axios.post('https://dp1.sytes.net/sendmail',{email:email,shouldExist:false})
 
 				if(res.status != 200){
 					throw new Error(res.data)
@@ -53,7 +53,7 @@ const Register = ({setprogress}) => {
 				try {
 					
 					setprogress(80)
-					let res = await axios.post('https://dp.realshiva.rocks/verifyotp',{email:userData.email,otp:otp});
+					let res = await axios.post('https://dp1.sytes.net/verifyotp',{email:userData.email,otp:otp});
 	
 					if(res.status != 200)
 					throw new Error(res.data)
@@ -83,7 +83,7 @@ const Register = ({setprogress}) => {
             		uploadData.append('file', file.files[0]);
 
 
-					let res = await axios.post('https://dp.realshiva.rocks/register', uploadData, {
+					let res = await axios.post('https://dp1.sytes.net/register', uploadData, {
 						headers: {
 							'content-type': 'multipart/form-data'
 						}

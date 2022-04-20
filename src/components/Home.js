@@ -14,10 +14,10 @@ const Home = ({setprogress}) => {
     async function main(){
         try {
             setprogress(80)
-            let res1 = await axios.get('https://dp.realshiva.rocks/likedid')
+            let res1 = await axios.get('https://dp1.sytes.net/likedid')
             setlikedId(res1.data.id)
 
-            let res = await axios.get('https://dp.realshiva.rocks/getdata')
+            let res = await axios.get('https://dp1.sytes.net/getdata')
             setdata(res.data)
 
             setprogress(100)

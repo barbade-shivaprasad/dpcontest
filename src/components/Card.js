@@ -20,8 +20,8 @@ const Card = ({ele,pLiked}) => {
   const getPost = async()=>{
       try {
         
-        let res = await axios.get(`https://dp.realshiva.rocks/posts/${id}`)
-        let res1 = await axios.get(`https://dp.realshiva.rocks/likedid`)
+        let res = await axios.get(`https://dp1.sytes.net/posts/${id}`)
+        let res1 = await axios.get(`https://dp1.sytes.net/likedid`)
 
 
 
@@ -120,7 +120,7 @@ const Card = ({ele,pLiked}) => {
     try {
       console.log(post)  
       if(like == 0){
-        let res = await axios.post('https://dp.realshiva.rocks/like',{id:post.id})
+        let res = await axios.post('https://dp1.sytes.net/like',{id:post.id})
         
         if(res.status != 200)
         throw new Error(res.data)
@@ -130,7 +130,7 @@ const Card = ({ele,pLiked}) => {
         }
       }
       else{
-        let res1 = await axios.post('https://dp.realshiva.rocks/unlike',{id:post.id})
+        let res1 = await axios.post('https://dp1.sytes.net/unlike',{id:post.id})
         if(res1.status != 200)
         throw new Error(res1.data)
         else{
@@ -152,12 +152,12 @@ const Card = ({ele,pLiked}) => {
     <div className={cardContainer}>{post !=1 && post !=null ? <div className="card">
         <div className='card-top'>
           <div className='avatar'>
-            <img src={`https://dp.realshiva.rocks/getimg/${post.id}`} alt="" />
+            <img src={`https://dp1.sytes.net/getimg/${post.id}`} alt="" />
           </div>
           <div className='name'>{post.name}</div>
         </div>
         <div className='card-img' onClick={()=> navigate(`/post/${post.id}`)}>
-            <img src={`https://dp.realshiva.rocks/getimg/${post.id}`} alt="img"  className='img'/>
+            <img src={`https://dp1.sytes.net/getimg/${post.id}`} alt="img"  className='img'/>
         </div>
         <div className='card-bottom'>
         <span id = "heart"><i className={`fa ${fillColor} heart`} aria-hidden="true" onClick={e=>likeUnlike()}></i> </span>
