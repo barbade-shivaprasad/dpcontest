@@ -189,6 +189,11 @@ const Register = ({setprogress}) => {
 							Verify
 						</button>
 					</div>
+
+					<span className="login100-form-title" disabled={!disabled}>
+						Upload your DP
+					</span>
+					
 					<div className="wrap-input100 validate-input" data-validate = "Password is required" style={{paddingTop:"9px",marginTop:"22px",textAlign:"center"}}>
 						<input className="input100" type="file" name="pass" placeholder="ID Number" id='dp'/>
 					</div>
