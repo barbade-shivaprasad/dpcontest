@@ -48,8 +48,8 @@ const Register = ({setprogress}) => {
 			}
 		}
 		else{
-			let otp = document.getElementById('otp').value
 			if(status === "verify"){
+				let otp = document.getElementById('otp').value
 
 				try {
 					
