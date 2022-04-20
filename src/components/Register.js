@@ -59,6 +59,7 @@ const Register = ({setprogress}) => {
 					throw new Error(res.data)
 					else{
 						alert('success','Verified!')
+						setcontainer(3)
 						setdisabled(false)
 					}
 					
@@ -163,7 +164,7 @@ const Register = ({setprogress}) => {
 	</div>
     </>
 
-	:<>
+	: container == 2 ?<>
     <div className="limiter">
 		<div className="container-login100">
 			<div className="wrap-login100">
@@ -172,7 +173,7 @@ const Register = ({setprogress}) => {
 				</div>
 
 				<form className="login100-form validate-form">
-					<span className="login100-form-title" disabled={!disabled}>
+					<span className="login100-form-title" >
 						Verify OTP
 					</span>
 
@@ -185,15 +186,27 @@ const Register = ({setprogress}) => {
 					</div>
 
 					<div className="container-login100-form-btn" style={{padding:'0px'}}>
-						<button className="login100-form-btn" onClick={e=>submitHandler(e,"verify")}>
+						<button className="login100-form-btn" onClick={e=>submitHandler(e,"verify")} disabled={!disabled}>
 							Verify
 						</button>
 					</div>
 
-					<span className="login100-form-title" disabled={!disabled}>
-						Upload your DP
+				</form>
+			</div>
+		</div>
+	</div>
+    </> : <>
+    <div className="limiter">
+		<div className="container-login100">
+			<div className="wrap-login100">
+				<div className="login100-pic js-tilt" data-tilt>
+					<img src={image} alt="IMG"/>
+				</div>
+
+				<form className="login100-form validate-form">
+					<span className="login100-form-title" >
+						Upload Your DP
 					</span>
-					
 					<div className="wrap-input100 validate-input" data-validate = "Password is required" style={{paddingTop:"9px",marginTop:"22px",textAlign:"center"}}>
 						<input className="input100" type="file" name="pass" placeholder="ID Number" id='dp'/>
 					</div>

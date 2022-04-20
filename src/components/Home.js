@@ -17,9 +17,9 @@ const   Home = ({setprogress}) => {
             let current_d = new Date();
             let contest_d = new Date("2022-04-21T20:00:00")
 
-            // if (current_d < contest_d ){
-            //     throw new Error("Contest has not started yet :)")
-            // }
+            if (current_d < contest_d ){
+                throw new Error("Contest has not started yet :)")
+            }
             let res1 = await axios.get('https://dp1.sytes.net/likedid')
             setlikedId(res1.data.id)
 
