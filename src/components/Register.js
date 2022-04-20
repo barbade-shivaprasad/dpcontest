@@ -12,7 +12,8 @@ const Register = ({setprogress}) => {
 
 	let inpRef = useRef();
 	useEffect(() => {
-  
+		
+		if(inpRef.current !== null)
 		if(inpRef.current !== undefined)
 		inpRef.current.value = '';
 	  }, [container]);
