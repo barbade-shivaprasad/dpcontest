@@ -18,7 +18,6 @@ const   Home = ({setprogress}) => {
             let contest_d = new Date("2022-04-21T20:00:00")
 
             if (current_d < contest_d ){
-                alert("as")
                 throw new Error("Contest has not started yet :)")
             }
             let res1 = await axios.get('https://dp1.sytes.net/likedid')
