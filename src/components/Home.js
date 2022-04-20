@@ -36,7 +36,7 @@ const Home = ({setprogress}) => {
         {data.length !== 0 ?data.map((ele)=>{
             return (
                 <Suspense>
-                    {likedId != ""?<Card ele = {ele} pLiked={likedId}/>:""}
+                    {likedId != ""?<Card ele = {ele} pLiked={likedId} setprogress={setprogress}/>:""}
                 </Suspense>
             )
         }):""}
