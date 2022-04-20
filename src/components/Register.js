@@ -80,8 +80,13 @@ const Register = ({setprogress}) => {
             		uploadData.append('name', userData.name);
             		uploadData.append('id', userData.id);
             		uploadData.append('email', userData.email);
+
+					if(file.files.length == 0)
+					throw new Error("please select a file")
+
             		uploadData.append('file', file.files[0]);
 
+					document.querySelector('.uploading').style.display = "block"
 
 					let res = await axios.post('https://dp1.sytes.net/register', uploadData, {
 						headers: {
@@ -92,12 +97,14 @@ const Register = ({setprogress}) => {
 					if(res.status != 200)
 					throw new Error(res.data)
 					else{
+						document.querySelector('.uploading').style.display = "none"
 						alert('success',res.data)
 					}
 					setprogress(100)
 					navigate('/')
 
 				} catch (err) {
+					document.querySelector('.uploading').style.display = "none"
 					alert('danger',err.message)
 					setprogress(100)
 				}
@@ -109,7 +116,7 @@ const Register = ({setprogress}) => {
 	}
   return (
     
-   <>{container == 1? <>
+   <><div className='uploading alert alert-primary'>uploading...</div>{container == 1? <>
     <div className="limiter">
 		<div className="container-login100">
 			<div className="wrap-login100">
@@ -165,7 +172,7 @@ const Register = ({setprogress}) => {
 				</div>
 
 				<form className="login100-form validate-form">
-					<span className="login100-form-title">
+					<span className="login100-form-title" disabled={!disabled}>
 						Verify OTP
 					</span>
 
