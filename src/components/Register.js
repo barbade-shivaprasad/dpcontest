@@ -10,7 +10,7 @@ const Register = ({setprogress}) => {
 	const navigate = useNavigate()
 	const [container, setcontainer] = useState(1)
 	const [userData, setuserData] = useState({name:"",email:"",id:""})
-	const [disabled, setdisabled] = useState(true)
+	const [disabled, setdisabled] = useState(false)
 	const [next, setnext] = useState(false)
 
 	let inpRef = useRef();
@@ -24,6 +24,7 @@ const Register = ({setprogress}) => {
 
 	const submitHandler = async(e,status)=>{
 		e.preventDefault();
+		
 		if(container == 1){
 
 			let name = document.getElementById('name').value;
@@ -65,7 +66,6 @@ const Register = ({setprogress}) => {
 					else{
 						alert('success','Verified!')
 						setcontainer(3)
-						setdisabled(false)
 					}
 					
 					setprogress(100)
@@ -76,10 +76,8 @@ const Register = ({setprogress}) => {
 			}
 			else{
 				try {
-
+					setdisabled(true);
 					setprogress(80)
-					if(disabled)
-					throw new Error("Please verify OTP!")
 					
 					let file = document.getElementById('dp')
 					const uploadData = new FormData();;
@@ -191,7 +189,7 @@ const Register = ({setprogress}) => {
 					</div>
 
 					<div className="container-login100-form-btn" style={{padding:'0px'}}>
-						<button className="login100-form-btn" onClick={e=>submitHandler(e,"verify")} disabled={!disabled}>
+						<button className="login100-form-btn" onClick={e=>submitHandler(e,"verify")}>
 							Verify
 						</button>
 					</div>
@@ -216,7 +214,7 @@ const Register = ({setprogress}) => {
 						<input className="input100" type="file" name="pass" placeholder="ID Number" id='dp'/>
 					</div>
 					<div className="container-login100-form-btn" style={{padding:'0px'}}>
-						<CopyToClipboard text={`https://dp.turntbloke.tech/post/${userData.id}`}><button className="login100-form-btn" onClick={e=>submitHandler(e,"register")}>
+						<CopyToClipboard text={`https://dp.turntbloke.tech/post/${userData.id}`}><button className="login100-form-btn" onClick={e=>submitHandler(e,"register")} disabled={disabled}>
 							Upload
 						</button></CopyToClipboard>
 					</div>
