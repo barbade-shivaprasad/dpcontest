@@ -85,7 +85,7 @@ const Card = ({ ele, pLiked, setprogress }) => {
       setprogress(80);
       if (like == 0) {
         let current_d = new Date();
-        let contest_d = new Date("2022-04-21T22:30:00");
+        let contest_d = new Date("2022-04-21T22:10:00");
 
         if (current_d > contest_d) {
           staticAlert("danger", "Contest has been ended :)");
@@ -104,7 +104,7 @@ const Card = ({ ele, pLiked, setprogress }) => {
         }
       } else {
         let current_d = new Date();
-        let contest_d = new Date("2022-04-21T22:30:00");
+        let contest_d = new Date("2022-04-21T22:10:00");
 
         if (current_d > contest_d) {
           staticAlert("danger", "Contest has been ended :)");
