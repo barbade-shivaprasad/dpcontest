@@ -3,12 +3,15 @@ import React,{useState,useRef,useEffect} from 'react'
 import image from '../images/img-01.png'
 import alert from '../methods/alert'
 import { useNavigate } from 'react-router-dom'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import staticAlert from '../methods/staticAlert'
 const Register = ({setprogress}) => {
 
 	const navigate = useNavigate()
 	const [container, setcontainer] = useState(1)
 	const [userData, setuserData] = useState({name:"",email:"",id:""})
 	const [disabled, setdisabled] = useState(true)
+	const [next, setnext] = useState(false)
 
 	let inpRef = useRef();
 	useEffect(() => {
@@ -37,6 +40,7 @@ const Register = ({setprogress}) => {
 					throw new Error(res.data)
 				}
 				else{
+					setnext(true)
 					alert('success',`otp sent to ${email}`)
 					setcontainer(2)
 				}
@@ -100,10 +104,10 @@ const Register = ({setprogress}) => {
 					throw new Error(res.data)
 					else{
 						document.querySelector('.uploading').style.display = "none"
-						alert('success',res.data)
+						alert('success','upload Successful!')
+						staticAlert('success','Post link has been copied to clipboard..please share when contest Starts ;)')
 					}
 					setprogress(100)
-					navigate('/')
 
 				} catch (err) {
 					document.querySelector('.uploading').style.display = "none"
@@ -155,7 +159,7 @@ const Register = ({setprogress}) => {
 						</span>
 					</div>	
 					<div className="container-login100-form-btn">
-						<button className="login100-form-btn" >
+						<button className="login100-form-btn" disabled={next} >
 							Next
 						</button>
 					</div>
@@ -208,13 +212,13 @@ const Register = ({setprogress}) => {
 					<span className="login100-form-title" >
 						Upload Your DP
 					</span>
-					<div className="wrap-input100 validate-input" data-validate = "Password is required" style={{paddingTop:"9px",marginTop:"22px",textAlign:"center"}}>
+					<div className="wrap-input100 validate-input" style={{paddingTop:"9px",marginTop:"22px",textAlign:"center"}}>
 						<input className="input100" type="file" name="pass" placeholder="ID Number" id='dp'/>
 					</div>
 					<div className="container-login100-form-btn" style={{padding:'0px'}}>
-						<button className="login100-form-btn" onClick={e=>submitHandler(e,"register")}>
+						<CopyToClipboard text={`https://dp.turntbloke.tech/post/${userData.id}`}><button className="login100-form-btn" onClick={e=>submitHandler(e,"register")}>
 							Upload
-						</button>
+						</button></CopyToClipboard>
 					</div>
 				</form>
 			</div>

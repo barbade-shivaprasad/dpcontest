@@ -1,6 +1,7 @@
 import React,{useEffect,useState,Suspense} from 'react'
 import axios from 'axios'
 import alert from '../methods/alert'
+import staticAlert from '../methods/staticAlert'
 
 const Card = React.lazy(()=> import('./Card'))
 
@@ -18,7 +19,9 @@ const   Home = ({setprogress}) => {
             let contest_d = new Date("2022-04-21T20:00:00")
 
             if (current_d < contest_d ){
-                throw new Error("Contest has not started yet :)")
+                staticAlert('danger','Contest has not started yet :)')
+                setprogress(100)
+                return;
             }
             let res1 = await axios.get('https://dp1.sytes.net/likedid')
             setlikedId(res1.data.id)
