@@ -16,7 +16,7 @@ const   Home = ({setprogress}) => {
         try {
             setprogress(80)
             let current_d = new Date();
-            let contest_d = new Date("2022-04-21T20:00:00")
+            let contest_d = new Date("2022-04-21T20:30:00")
 
             if (current_d < contest_d ){
                 staticAlert('danger','Contest has not started yet :)')
