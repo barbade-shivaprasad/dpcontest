@@ -100,7 +100,6 @@ const Card = ({ele,pLiked,setprogress}) => {
   
   socket.on('getlikes',(id,likes)=>{
 
-      console.log("Entered",id,likes,post)
       if(post.id === id)
       setpostLikes(likes)
   })
